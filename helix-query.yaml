@@ -1,0 +1,32 @@
+version: 1
+indices:
+  default: &default
+    include:
+      - /**
+    target: /query-index.json
+    properties: 
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[property="og:description"]
+        value: attribute(el, "content")
+      council:
+        select: head > meta[name="council"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+  europe:
+    <<: *default
+    include:
+      - /**
+    target: /europe/query-index.json
+  north-america:
+    <<: *default
+    include:
+      - /**
+    target: /north-america/query-index.json
+    
+
+
